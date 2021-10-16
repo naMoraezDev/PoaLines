@@ -5,9 +5,9 @@ export const LightTheme = createTheme(
   {
     palette: {
       primary: {
-        main: "#4C4C6D",
-        light: "#4C4C6D",
-        dark: "#4C4C6D",
+        main: "#30475E",
+        light: "#30475E",
+        dark: "#30475E",
         contrastText: "#FFFFFF",
       },
       error: {
@@ -34,7 +34,7 @@ export const LightTheme = createTheme(
         primary: "#414141",
       },
       background: {
-        default: "#FFE194",
+        default: "#DDDDDD",
         paper: "#EEEEEE",
       },
     },
