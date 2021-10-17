@@ -16,10 +16,13 @@ import {
   makeStyles,
   CardContent,
   TableContainer,
+  InputAdornment,
 } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 
 import { alert } from "../shared/components/alert";
 import { ILine, LineService } from "../shared/api/services/LinesService";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -27,11 +30,18 @@ const useStyles = makeStyles((theme) => {
       backgroundColor: theme.palette.background.default,
       minHeight: "100vh",
     },
+    card: {
+      marginTop: theme.spacing(10),
+    },
+    tableRow: {
+      cursor: "pointer",
+    },
   };
 });
 
 export const HomePage: React.FC = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [search, setSearch] = useState<string>("");
   const [busLines, setBusLines] = useState<ILine[]>([]);
   const [capacityLines, setCapacitiesLines] = useState<ILine[]>([]);
@@ -89,9 +99,8 @@ export const HomePage: React.FC = () => {
     <div className={classes.background}>
       <Container maxWidth="lg">
         <Grid container>
-          <Grid item xs={6}></Grid>
-          <Grid item xs={6}>
-            <Card elevation={0}>
+          <Grid item xs={12}>
+            <Card elevation={0} className={classes.card}>
               <CardContent>
                 <Grid container justifyContent="center" spacing={2}>
                   <Grid item xs={12}>
@@ -115,10 +124,17 @@ export const HomePage: React.FC = () => {
                       variant="outlined"
                       onChange={(e) => handleSearch(e.target.value)}
                       placeholder="Por favor, informe a linha desejada."
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <SearchIcon color="primary" />
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TableContainer component={Box} maxHeight={500}>
+                    <TableContainer component={Box} maxHeight={560}>
                       <Table>
                         <TableHead>
                           <TableRow>
@@ -132,7 +148,14 @@ export const HomePage: React.FC = () => {
                               ? busLines
                               : filtredBusLines
                             ).map((line, index) => (
-                              <TableRow key={index}>
+                              <TableRow
+                                hover
+                                key={index}
+                                className={classes.tableRow}
+                                onClick={() =>
+                                  history.push(`/itinerary/${line.id}`)
+                                }
+                              >
                                 <TableCell>{line.codigo}</TableCell>
                                 <TableCell>{line.nome}</TableCell>
                               </TableRow>
@@ -142,7 +165,13 @@ export const HomePage: React.FC = () => {
                               ? capacityLines
                               : filtredCapacityLines
                             ).map((line, index) => (
-                              <TableRow key={index}>
+                              <TableRow
+                                hover
+                                key={index}
+                                onClick={() =>
+                                  history.push(`/itinerary/${line.id}`)
+                                }
+                              >
                                 <TableCell>{line.codigo}</TableCell>
                                 <TableCell>{line.nome}</TableCell>
                               </TableRow>
