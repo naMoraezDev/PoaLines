@@ -208,6 +208,7 @@ export const LineList: React.FC = () => {
                                   <TableRow
                                     hover
                                     key={index}
+                                    className={classes.tableRow}
                                     onClick={() =>
                                       history.push(`/itinerary/${line.id}`)
                                     }
