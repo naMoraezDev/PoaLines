@@ -5,10 +5,7 @@ export const DarkTheme = createTheme(
   {
     palette: {
       primary: {
-        main: "#FFD369",
-        light: "#FFD369",
-        dark: "#FFD369",
-        contrastText: "#EEEEEE",
+        main: "#EEEEEE",
       },
       error: {
         main: "#F50000",
