@@ -7,7 +7,7 @@ import { ThemesProvider } from "./shared/context/Theme";
 export const App: React.FC = () => {
   return (
     <ThemesProvider>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter>
         <Routes />
       </BrowserRouter>
     </ThemesProvider>
